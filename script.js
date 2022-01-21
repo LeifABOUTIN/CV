@@ -60,4 +60,5 @@ setTimeout(() => {
 	for (let modal of modals) {
 		modal.remove()
 	}
+	container.style.overflow = "visible"
 }, 7000)
