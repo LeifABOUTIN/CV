@@ -19,7 +19,7 @@ const addEffect = async () => {
 	}
 }
 
-const tl = gsap.timeline()
+const tl = gsap.timeline({ delay: 0.3 })
 const tl2 = gsap.timeline({ delay: 4 })
 const tl3 = gsap.timeline({ delay: 7 })
 
