@@ -1,5 +1,5 @@
-const maxWidth = window.innerWidth * 1.5
-const maxHeight = window.innerHeight * 1.5
+const maxWidth = window.innerWidth * 1.1
+const maxHeight = window.innerHeight * 1.1
 
 const animate = document.querySelectorAll(".animate")
 const container = document.querySelector(".container")
@@ -23,6 +23,8 @@ const hell = document.querySelector("#hell")
 const heaven = document.querySelector("#heaven")
 const btnPlus = document.querySelector(".btn-plus")
 const show = document.querySelectorAll(".hide")
+const empty1 = document.querySelector(".empty1")
+const empty3 = document.querySelector(".empty3")
 let level = 3
 let bubbleCount = 0
 let player_score = 0
@@ -46,7 +48,7 @@ const startTheGame = () => {
 		bubbleCount += 1
 
 		let nbr = document.querySelectorAll(".bubble").length
-		counter.innerText = nbr
+		counter.innerText = bubbleCount
 
 		arrayOfBubbles.push(new_bubble)
 	}, 1000)
@@ -99,11 +101,9 @@ difficulty.addEventListener("input", (e) => {
 		hell.style.color = "black"
 	}
 
-	setInterval(() => {
-		document
-			.querySelectorAll(".bubble")
-			.forEach((b) => (b.style.transition = `all ${speed}s linear`))
-	})
+	document
+		.querySelectorAll(".bubble")
+		.forEach((b) => (b.style.transition = `all ${speed}s linear`))
 
 	level = speed
 })
@@ -149,6 +149,10 @@ tl2.to(".m2", {
 	})
 	.call(() => {
 		dashboard.style.opacity = 1
+		empty1.style.background = "#7e4f4f"
+		info_side.style.background = "#7e4f4f"
+		info_me.style.background = "rgb(25, 46, 66)"
+		empty3.style.background = "rgb(25, 46, 66)"
 	})
 tl3.call(addEffect)
 setTimeout(() => {
@@ -168,6 +172,7 @@ class Bubble {
 		setTimeout(() => {
 			this.bubble.remove()
 			bubbleCount -= 1
+			counter.innerText = bubbleCount
 		}, 200)
 	}
 	popOne(bubble) {
@@ -188,6 +193,7 @@ class Bubble {
 			bubble.target.remove()
 		}, 500)
 		bubbleCount -= 1
+		counter.innerText = bubbleCount
 	}
 	createAndAnimate() {
 		let parent = container

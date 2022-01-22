@@ -83,7 +83,7 @@ body {
 	gap: 10px;
 	grid-template-columns: 10% 10% 20% 50% 10%;
 	grid-template-rows: 30% 70%;
-	grid-template-areas: "space1 hero info_me info_me space2" " space1 info_side info_side job_and_xp space2";
+	grid-template-areas: "space1 hero info_me info_me space2" " space1 info_side info_side job_and_xp space3";
 	opacity: 0;
 }
 .empty1 {
@@ -92,6 +92,10 @@ body {
 }
 .empty2 {
 	grid-area: space2;
+	background-color: transparent;
+}
+.empty3 {
+	grid-area: space3;
 	background-color: transparent;
 }
 .hero_image {
@@ -118,7 +122,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-
+	padding: 0 2rem;
 	opacity: 0;
 }
 .info_side > div {
@@ -127,6 +131,7 @@ body {
 .job_and_xp {
 	opacity: 0;
 	grid-area: job_and_xp;
+	padding: 0 2rem;
 }
 span,
 p {
