@@ -25,6 +25,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	position: absolute;
+	flex-direction: column;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -78,12 +79,20 @@ body {
 	top: 100%;
 	left: 10%;
 	display: grid;
-	margin: auto;
+
 	gap: 10px;
-	grid-template-columns: 10% 20% 70%;
+	grid-template-columns: 10% 10% 20% 50% 10%;
 	grid-template-rows: 30% 70%;
-	grid-template-areas: "hero info_me info_me" "info_side info_side job_and_xp";
+	grid-template-areas: "space1 hero info_me info_me space2" " space1 info_side info_side job_and_xp space2";
 	opacity: 0;
+}
+.empty1 {
+	grid-area: space1;
+	background-color: transparent;
+}
+.empty2 {
+	grid-area: space2;
+	background-color: transparent;
 }
 .hero_image {
 	width: 100%;
@@ -108,9 +117,12 @@ body {
 	grid-area: info_side;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
-	margin: 5rem 0;
+	justify-content: center;
+
 	opacity: 0;
+}
+.info_side > div {
+	margin-bottom: 100px;
 }
 .job_and_xp {
 	opacity: 0;
@@ -138,10 +150,94 @@ h2 {
 }
 .tremble:hover {
 	animation: none;
-	transform: scale(1.05);
+
 	font-weight: bold;
 	color: #000000;
 }
+.bubble {
+	border-radius: 50%;
+	position: absolute;
+	transition: all 3s ease-in-out;
+	opacity: 0.8;
+	z-index: 1000;
+}
+.dashboard {
+	position: fixed;
+	top: 30px;
+	right: 10px;
+	background-color: #ccccccc5;
+	color: black;
+	font-size: 2rem;
+	padding: 1rem;
+	opacity: 0;
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 8;
+	transition: all 2s ease-in-out;
+}
+.dashboard > span {
+	margin: 0;
+}
+.gameDashboard > span {
+	margin: 0;
+}
+
+.bubbleCounter::after {
+	content: " bubbles";
+	width: fit-content;
+	font-size: 1rem;
+
+	color: black;
+	opacity: 1;
+}
+
+.slider {
+	display: flex;
+	padding: 1rem;
+}
+.btn {
+	padding: 1rem;
+	font-weight: 500;
+	font-size: 0.9rem;
+	width: 150px;
+	cursor: pointer;
+	margin-top: 1rem;
+	background-color: #383838;
+	color: white;
+}
+.btn:hover {
+	background-color: white;
+	color: #383838;
+}
+.btn-plus {
+	color: #383838;
+}
+.btn-plus:hover {
+	transform: scale(1.2);
+	transition: scale 1s ease;
+	color: black;
+	cursor: pointer;
+}
+.fyeah {
+	padding: 2rem;
+	font-size: 2rem;
+	color: white;
+	background-color: rgba(0, 0, 0, 0.452);
+	border-radius: 10px;
+}
+
+.gameDashboard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.hide {
+	display: none;
+}
+
 @keyframes anim {
 	0%,
 	100% {
@@ -191,7 +287,20 @@ h2 {
 		justify-content: center;
 		align-items: center;
 	}
+	.info_side > div {
+		margin: 0;
+	}
 	.hero {
 		display: none;
+	}
+	.dashboard {
+		top: -10px;
+		left: -100px;
+		padding: 0;
+
+		width: 120vw;
+
+		transition: none;
+		background: white;
 	}
 }

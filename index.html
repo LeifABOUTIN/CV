@@ -8,11 +8,46 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<div class="modal1 modal">LEIF BOUTIN</div>
+		<div class="modal1 modal">
+			<p>LEIF BOUTIN</p>
+			<br />
+			<p style="font-size: 1rem">@qLineX</p>
+		</div>
 		<div class="modal2 modal m2"></div>
 		<div class="modal3 modal m2"></div>
 		<div class="modal4 modal m2"></div>
+
 		<main class="container animate">
+			<div class="empty1"></div>
+			<div class="empty2"></div>
+			<div class="dashboard">
+				<h3>Dashboard <i class="btn-plus fas fa-plus"></i></h3>
+				<div class="gameDashboard hide">
+					<span>DARE, DO YOU?</span>
+					<div class="slider">
+						<small id="hell">Hell</small>
+						<input
+							type="range"
+							min="0.2"
+							max="6"
+							value="3"
+							step=".1"
+							id="difficulty"
+						/>
+
+						<small id="heaven">Heaven</small>
+					</div>
+					<button class="btn btn-start">START GAME</button>
+					<button class="btn btn-destroy-bubbles">POP 'EM ALL</button>
+
+					<div class="bubbleCounter hide"></div>
+					<div class="game hide">
+						Click to pop!
+						<br />
+						points: <span id="score">0</span>
+					</div>
+				</div>
+			</div>
 			<div class="hero animate">
 				<img
 					src="./imgs/leif.jpg"
@@ -21,13 +56,13 @@
 				/>
 			</div>
 			<div class="info_me animate">
-				<h1 class="main_title">Leif BOUTIN</h1>
+				<h1 class="main_title effect">Leif BOUTIN</h1>
 				<h2>WEB DEVELOPPER FULL STACK, FREELANCE AUDIOVISUEL LIVE</h2>
 				<p>Curieux, acharné.</p>
 			</div>
 			<div class="info_side animate">
 				<div>
-					<h4>COORDONNEES</h4>
+					<h4 class="effect">COORDONNEES</h4>
 					<span><i class="fas fa-phone"></i> 0611120454</span>
 					<br />
 					<span
@@ -40,7 +75,7 @@
 					>
 				</div>
 				<div>
-					<h4>SKILL & QUALIFICATIONS</h4>
+					<h4 class="effect">SKILL & QUALIFICATIONS</h4>
 					<span
 						><i class="fas fa-plus"></i> Gestion d'équipe &
 						communication</span
@@ -56,7 +91,7 @@
 					>
 				</div>
 				<div>
-					<h4>TECHNOS & COMPETENCES</h4>
+					<h4 class="effect">TECHNOS & COMPETENCES</h4>
 					<span><i class="fas fa-plus"></i> Javascript, Python</span>
 					<br />
 					<span
@@ -78,11 +113,33 @@
 						970</span
 					>
 				</div>
+				<div>
+					<h4 class="effect">PERSO</h4>
+					<span
+						><i class="fas fa-gamepad"></i> Ancien Progamer RTS
+						(WC3/SC2)</span
+					>
+					<br />
+					<span
+						><i class="fas fa-atom"></i>Passionné de
+						Paléoanthropologie</span
+					>
+					<br />
+					<span
+						><i class="fas fa-dumbbell"></i> Powerlifter niveau R1,
+						National!</span
+					>
+					<br />
+					<span
+						><i class="fas fa-book"></i>Avide lecteur, thriller Américain
+						en particulier</span
+					>
+				</div>
 			</div>
 			<div class="job_and_xp animate">
 				<div class="jobs">
 					<div class="first-xp">
-						<h2>EXPERIENCE PRO</h2>
+						<h2 class="effect">EXPERIENCE PRO</h2>
 						<h3>DEVELOPPER REACT/FRONTEND - STAGE - 2021</h3>
 						<p>
 							-Mise en place d'une plateforme BtoB de gestion de flux
@@ -91,11 +148,11 @@
 						<p>-React, SCSS, MONGODB</p>
 						<h3>FREELANCE DEV: 2021/2022</h3>
 						<p>
-							-Mise en place de script ayant pour objectif
-							l'automatisation de certain process de réalisation live.
+							-Mise en place de scripts ayant pour objectif
+							l'automatisation de certains process de réalisation live.
 						</p>
 						<p>
-							-Création d'outil ayant pour but d'injecter du contenu web
+							-Création d'outils ayant pour but d'injecter du contenu web
 							comme habillage de live.
 						</p>
 						<p>
@@ -105,14 +162,14 @@
 
 						<h3>FREELANCE AUDIOVISUEL: 2021/2022</h3>
 						<p>
-							-Organisations & production d'événements live divers, accés
+							-Organisations & production d'événements "live" divers,
 							jeux vidéo, youtube & twitch
 						</p>
 						<p>-Installation des plateaux & régies</p>
 						<p>-Gestion de live, Réalisateur, Truquiste, Runner</p>
 						<p>
-							-Plusieurs gros événements, le Gotaga Shift Race, les KCX 1
-							& 2, Domingo * Rolland Garros et plein d'autres.
+							-Plusieurs gros événements, "Gotaga Shift Race", les "KCX"
+							1 & 2, "Domingo * Rolland Garros" et plein d'autres.
 						</p>
 					</div>
 					<div class="second-xp">
@@ -127,9 +184,9 @@
 					</div>
 				</div>
 				<div class="education">
-					<h2>EDUCATION</h2>
+					<h2 class="effect">EDUCATION</h2>
 					<h3>CODING ACADEMY by EPITECH - FULL STACK, 2020/2021</h3>
-					<p>-Apprentisage des languages, PHP, JS, Python</p>
+					<p>-Apprentisage des langages, PHP, JS, Python</p>
 					<p>
 						-Apprentisage & travaux sur les frameworks: Laravel, ReactJS,
 						VueJS, NestJS, NextJS, Flask, Django
@@ -144,6 +201,7 @@
 				</div>
 			</div>
 		</main>
+
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
 			integrity="sha512-H6cPm97FAsgIKmlBA4s774vqoN24V5gSQL4yBTDOY2su2DeXZVhQPxFK4P6GPdnZqM9fg1G3cMv5wD7e6cFLZQ=="
