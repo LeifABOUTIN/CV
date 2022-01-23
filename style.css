@@ -200,7 +200,7 @@ h2 {
 	animation: anim 3s infinite;
 }
 .tremble {
-	animation: tremble 0.5s infinite;
+	animation: tremble 4s infinite;
 }
 .tremble:hover {
 	animation: none;
@@ -311,10 +311,12 @@ h2 {
 @keyframes tremble {
 	0%,
 	100% {
-		transform: translate(-2px, -3px);
+		transform: translateX(5px);
+		opacity: 0.6;
 	}
 	50% {
-		transform: translate(+2px, 3px);
+		transform: translateX(0);
+		opacity: 1;
 	}
 }
 
