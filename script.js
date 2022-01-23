@@ -163,7 +163,7 @@ tlbefore
 tl.to(".modal", {
 	duration: 1,
 	x: -4000,
-	ease: "power1.inOut",
+	ease: "none",
 	stagger: { from: "random", amount: 0.3 },
 })
 	.to(".container", {
