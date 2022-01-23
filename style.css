@@ -65,6 +65,7 @@ body {
 
 	background-color: #7e4f4f;
 }
+
 .main_title {
 	font-size: 3rem;
 	font-weight: 900;
@@ -74,7 +75,7 @@ body {
 	z-index: 1;
 	width: 80%;
 	background-color: transparent;
-	height: 1500px;
+	height: auto;
 	padding: 4rem;
 	top: 100%;
 	left: 10%;
@@ -82,21 +83,22 @@ body {
 
 	gap: 10px;
 	grid-template-columns: 10% 10% 20% 50% 10%;
-	grid-template-rows: 30% 70%;
+	grid-template-rows: auto;
 	grid-template-areas: "space1 hero info_me info_me space2" " space1 info_side info_side job_and_xp space3";
 	opacity: 0;
 }
 .empty1 {
 	grid-area: space1;
-	background-color: transparent;
+	background-color: #7e4f4f;
 }
 .empty2 {
 	grid-area: space2;
 	background-color: transparent;
 }
+
 .empty3 {
 	grid-area: space3;
-	background-color: transparent;
+	background-color: rgb(25, 46, 66);
 }
 .hero_image {
 	width: 100%;
@@ -110,6 +112,10 @@ body {
 	justify-content: center;
 	text-align: center;
 	opacity: 0;
+	background-color: rgb(25, 46, 66);
+}
+.info_me > p {
+	margin-top: 1rem;
 }
 .hero {
 	grid-area: hero;
@@ -124,6 +130,7 @@ body {
 	justify-content: center;
 	padding: 0 2rem;
 	opacity: 0;
+	background: #7e4f4f;
 }
 .info_side > div {
 	margin-bottom: 100px;
@@ -146,12 +153,29 @@ h2 {
 h4 {
 	font-size: 1.2rem;
 }
-h4,
+/* h4,
 h2 {
 	animation: anim 2s infinite;
+} */
+.under {
+	width: fit-content;
+	margin: 0 auto;
+	padding: 0;
+	position: relative;
+}
+.under::after {
+	content: "";
+	position: absolute;
+
+	background: rgb(240, 75, 75);
+	width: 0;
+
+	top: 22px;
+	height: 3px;
+	animation: anim 3s infinite;
 }
 .tremble {
-	animation: tremble 1s infinite;
+	animation: tremble 0.5s infinite;
 }
 .tremble:hover {
 	animation: none;
@@ -244,68 +268,123 @@ h2 {
 }
 
 @keyframes anim {
-	0%,
+	0% {
+		width: 0;
+		left: 50%;
+	}
 	100% {
-		text-decoration: underline transparent;
+		width: 100%;
+		left: 0%;
 	}
-	50% {
-		text-decoration: underline rgb(200, 5, 5);
-	}
+	/* 100% {
+		width: 0;
+		transform: translateX(50px);
+		left: +150px;
+	} */
 }
 @keyframes tremble {
 	0%,
 	100% {
-		transform: translate(-0.5px, -1.5px);
+		transform: translate(-2px, -3px);
 	}
 	50% {
-		transform: translate(+0.5px, +1.5px);
+		transform: translate(+2px, 3px);
 	}
 }
 
 @media screen and (max-width: 1000px) {
-	div {
+	/* div {
 		margin: 1.5rem 0 0 0;
-	}
+	} */
+
 	.modal1 {
 		font-size: 2rem;
 	}
 	body {
 		overflow: visible;
 		background-color: #383838;
+		width: 100vw;
 	}
 	.container {
-		grid-template-columns: 100%;
-		grid-template-rows: 15% 55% 30%;
-		grid-template-areas: "info_me" "job_and_xp" "info_side";
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		grid-template-areas: "dashboard" "hero" "info_me" "job_and_xp" "info_side";
 		height: fit-content;
-
-		padding: 10px;
+		width: 100%;
+		/* padding: 200px 0 10px 0; */
+		gap: 0;
+		padding: 0;
+		overflow: visible;
+		transform: unset;
+		left: 0;
 	}
 	.info_me {
-		background-image: url("./imgs/leif.jpg");
-		background-position: right;
-		background-size: contain;
+		/* background-image: url("./imgs/leif.jpg");
+		background-position: bottom center;
+		background-size: cover;
 		background-repeat: no-repeat;
-		padding-right: 100px;
+		background-color: transparent; */
+		/* padding-right: 100px; */
+
+		width: 100%;
+		display: inline;
+		transform: none;
 	}
 	.info_side {
 		justify-content: center;
 		align-items: center;
+		padding: 10px 10px;
 	}
 	.info_side > div {
 		margin: 0;
 	}
 	.hero {
-		display: none;
+		display: flex;
+		width: 100%;
+	}
+	.hero_image {
+		width: 100%;
+		border-radius: 0;
 	}
 	.dashboard {
-		top: -10px;
-		left: -100px;
+		grid-area: dashboard;
+		display: flex;
+		position: relative;
+		top: unset;
+		left: unset;
+		right: unset;
+		width: 100%;
+		border-radius: 0;
 		padding: 0;
+		margin: 0;
+		opacity: 1;
 
-		width: 120vw;
+		/* width: 120vw; */
 
 		transition: none;
 		background: white;
+	}
+	.job_and_xp {
+		width: 100%;
+		padding: 0 5px;
+		background: rgb(25, 46, 66);
+	}
+	.info_side {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		text-align: flex-start;
+	}
+	.info_side > div > span {
+		margin: 0;
+	}
+	.info_side > div {
+		display: flex;
+		flex-direction: column;
+		text-align: flex-start;
+		width: 100%;
+		padding: 10px;
 	}
 }

@@ -149,10 +149,6 @@ tl2.to(".m2", {
 	})
 	.call(() => {
 		dashboard.style.opacity = 1
-		empty1.style.background = "#7e4f4f"
-		info_side.style.background = "#7e4f4f"
-		info_me.style.background = "rgb(25, 46, 66)"
-		empty3.style.background = "rgb(25, 46, 66)"
 	})
 tl3.call(addEffect)
 setTimeout(() => {
