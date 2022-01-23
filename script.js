@@ -18,6 +18,7 @@ const height = document.body.offsetHeight
 const bubbles = document.querySelectorAll(".bubble")
 const counter = document.querySelector(".bubbleCounter")
 const startBtn = document.querySelector(".btn-start")
+const stopBtn = document.querySelector(".btn-stop")
 const btnDestroyBubbles = document.querySelector(".btn-destroy-bubbles")
 const dashboard = document.querySelector(".dashboard")
 const gameDash = document.querySelector(".gameDashboard")
@@ -33,6 +34,8 @@ const empty1 = document.querySelector(".empty1")
 const empty3 = document.querySelector(".empty3")
 
 let dashOpen = false
+let gameStarted = false
+let stop = false
 let level = 3
 let bubbleCount = 0
 let player_score = 0
@@ -44,8 +47,10 @@ modals.forEach((letter) => (letter.style.opacity = 1))
 //				FUNCTIONS
 
 const startTheGame = () => {
+	gameStarted = true
 	let my_interval = setInterval(() => {
 		if (arrayOfBubbles.length == 100) clearInterval(my_interval)
+		if (level === 0) clearInterval(my_interval)
 		let new_bubble = new Bubble()
 		new_bubble.createAndAnimate()
 		new_bubble.move()
@@ -85,16 +90,21 @@ const getSign = () => {
 	return number
 }
 //				EVENT LISTENRS
-
+stopBtn.addEventListener("click", () => {
+	if (gameStarted) {
+		level = 0
+		popEmAll()
+	}
+})
 document.addEventListener("click", (e) => {
-	console.log(e.target)
-	console.log(dashOpen)
-	if (
-		(dashOpen && !dashboard.contains(e.target)) |
-		(dashOpen && !dashboard.contains(e.target.parentElement))
-	) {
-		show.forEach((h) => h.classList.add("hide"))
-		dashOpen = false
+	if (!gameStarted) {
+		if (
+			(dashOpen && !dashboard.contains(e.target)) |
+			(dashOpen && !dashboard.contains(e.target.parentElement))
+		) {
+			show.forEach((h) => h.classList.add("hide"))
+			dashOpen = false
+		}
 	}
 })
 btnPlus.addEventListener("click", () => {
@@ -270,10 +280,16 @@ class Bubble {
 
 		let b = this.bubble
 		const repeatTimeout = function () {
-			b.style.transform = `translate(${Math.floor(
-				Math.random() * maxWidth * getSign()
-			)}px, ${Math.floor(Math.random() * maxHeight * getSign())}px)`
-			setTimeout(repeatTimeout, level * 1000)
+			console.log("level", level)
+			if (level === 0) {
+				console.log("0, i ll clear")
+				clearTimeout(repeatTimeout)
+			} else {
+				b.style.transform = `translate(${Math.floor(
+					Math.random() * maxWidth * getSign()
+				)}px, ${Math.floor(Math.random() * maxHeight * getSign())}px)`
+				setTimeout(repeatTimeout, level * 1000)
+			}
 		}
 		setTimeout(repeatTimeout, level)
 	}
