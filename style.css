@@ -200,7 +200,7 @@ h2 {
 	animation: anim 3s infinite;
 }
 .tremble {
-	animation: tremble 4s infinite;
+	animation: tremble 4s infinite, color 4s infinite;
 }
 .tremble:hover {
 	animation: none;
@@ -313,9 +313,12 @@ h2 {
 	100% {
 		transform: translateX(5px);
 		opacity: 0.6;
+		color: rgb(255, 255, 255);
 	}
 	50% {
 		transform: translateX(0);
+		color: rgb(56, 56, 56);
+		-webkit-text-stroke: 0.4px #ffffff;
 		opacity: 1;
 	}
 }
