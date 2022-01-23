@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@900&family=Roboto+Condensed&display=swap");
+
 * {
 	box-sizing: border-box;
 	margin: 0;
@@ -10,19 +12,23 @@
 	transition: all 3s ease;
 } */
 body {
-	background-color: #000000;
+	background-color: rgb(25, 46, 66);
 	color: white;
 	height: 100vh;
-	/* overflow: hidden; */
+	overflow: hidden;
 	max-width: 2000px;
 	margin: auto;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
 }
 .modal {
 	transition: all 3s ease;
 }
 .modal1 {
+	clip-path: circle(0% at 50% 50%);
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 	position: absolute;
 	flex-direction: column;
@@ -30,10 +36,27 @@ body {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	opacity: 0;
+	opacity: 1;
 
-	font-size: 10rem;
-	background: rgb(25, 46, 66);
+	font-size: 7rem;
+	background-image: url("./imgs/montagnes2.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	overflow: hidden;
+	transition: circle 2s, ease-in-out;
+}
+.textAnimation > p {
+	font-family: "Nunito", "Helvetica Neue";
+}
+.textAnimation {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	background-color: transparent;
+	width: 100%;
+	height: 100%;
 }
 .modal2 {
 	position: absolute;
@@ -90,6 +113,7 @@ body {
 .empty1 {
 	grid-area: space1;
 	background-color: #7e4f4f;
+	opacity: 0;
 }
 .empty2 {
 	grid-area: space2;
@@ -99,6 +123,7 @@ body {
 .empty3 {
 	grid-area: space3;
 	background-color: rgb(25, 46, 66);
+	opacity: 0;
 }
 .hero_image {
 	width: 100%;
@@ -196,8 +221,9 @@ h2 {
 	right: 10px;
 	background-color: #ccccccc5;
 	color: black;
-	font-size: 2rem;
-	padding: 1rem;
+	font-size: 1rem;
+
+	padding: 0.5rem 1rem;
 	opacity: 0;
 	border-radius: 20px;
 	display: flex;
@@ -355,10 +381,12 @@ h2 {
 		left: unset;
 		right: unset;
 		width: 100%;
+
 		border-radius: 0;
-		padding: 0;
+		padding: 1rem 0 0 0;
 		margin: 0;
 		opacity: 1;
+		height: 100px;
 
 		/* width: 120vw; */
 

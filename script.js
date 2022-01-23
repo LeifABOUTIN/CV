@@ -1,3 +1,8 @@
+window.scroll({
+	top: 0,
+	left: 0,
+})
+
 const maxWidth = window.innerWidth * 1.1
 const maxHeight = window.innerHeight * 1.1
 
@@ -15,6 +20,7 @@ const counter = document.querySelector(".bubbleCounter")
 const startBtn = document.querySelector(".btn-start")
 const btnDestroyBubbles = document.querySelector(".btn-destroy-bubbles")
 const dashboard = document.querySelector(".dashboard")
+const gameDash = document.querySelector(".gameDashboard")
 const score = document.querySelector("#score")
 const bubbleCounter = document.querySelector(".bubbleCounter")
 const game = document.querySelector(".game")
@@ -25,6 +31,8 @@ const btnPlus = document.querySelector(".btn-plus")
 const show = document.querySelectorAll(".hide")
 const empty1 = document.querySelector(".empty1")
 const empty3 = document.querySelector(".empty3")
+
+let dashOpen = false
 let level = 3
 let bubbleCount = 0
 let player_score = 0
@@ -32,13 +40,9 @@ const arrayOfBubbles = []
 
 const modals = document.querySelectorAll(".modal")
 modals.forEach((letter) => (letter.style.opacity = 1))
-window.scroll({
-	top: 0,
-	left: 0,
-	behavior: "smooth",
-})
 
-//functions
+//				FUNCTIONS
+
 const startTheGame = () => {
 	let my_interval = setInterval(() => {
 		if (arrayOfBubbles.length == 100) clearInterval(my_interval)
@@ -47,7 +51,6 @@ const startTheGame = () => {
 		new_bubble.move()
 		bubbleCount += 1
 
-		let nbr = document.querySelectorAll(".bubble").length
 		counter.innerText = bubbleCount
 
 		arrayOfBubbles.push(new_bubble)
@@ -81,10 +84,28 @@ const getSign = () => {
 
 	return number
 }
-//event listener
+//				EVENT LISTENRS
 
+document.addEventListener("click", (e) => {
+	console.log(e.target)
+	console.log(dashOpen)
+	if (
+		(dashOpen && !dashboard.contains(e.target)) |
+		(dashOpen && !dashboard.contains(e.target.parentElement))
+	) {
+		show.forEach((h) => h.classList.add("hide"))
+		dashOpen = false
+	}
+})
 btnPlus.addEventListener("click", () => {
-	show.forEach((h) => h.classList.toggle("hide"))
+	if (!dashOpen) {
+		console.log("ici?")
+		dashOpen = true
+		show.forEach((h) => h.classList.remove("hide"))
+	} else if (dashOpen) {
+		show.forEach((h) => h.classList.add("hide"))
+		dashOpen = false
+	}
 })
 difficulty.addEventListener("input", (e) => {
 	let speed = e.target.value
@@ -109,11 +130,36 @@ difficulty.addEventListener("input", (e) => {
 })
 btnDestroyBubbles.addEventListener("click", popEmAll)
 startBtn.addEventListener("click", startTheGame)
-//animations
-const tl = gsap.timeline({ delay: 0.3 })
-const tl2 = gsap.timeline({ delay: 4 })
-const tl3 = gsap.timeline({ delay: 7 })
 
+//				ANIMATIONS
+const tlbefore = gsap.timeline({ delay: 0.2 })
+const tl = gsap.timeline({ delay: 4 })
+const tl2 = gsap.timeline({ delay: 7 })
+const tl3 = gsap.timeline({ delay: 10 })
+tlbefore
+	.from(".textAnimation", { y: 0, opacity: 0 })
+	.to(".textAnimation", {
+		y: -200,
+		duration: 2,
+		opacity: 1,
+		ease: "expo.out",
+	})
+	.to(
+		".modal1",
+		{
+			ease: "sine.out",
+			clipPath: "circle(100% at 50% 50%)",
+			duration: 3,
+		},
+		"-=2"
+	)
+	.to("body", {
+		backgroundImage: "url(../imgs/montagnes2.jpg)",
+	})
+	.to(".modal1", {
+		background: "transparent",
+		backgroundImage: "none",
+	})
 tl.to(".modal", {
 	duration: 1,
 	x: -4000,
@@ -144,19 +190,27 @@ tl2.to(".m2", {
 	ease: "power1.inOut",
 	stagger: { from: "random", amount: 0.3 },
 })
+
 	.to(".container", {
-		backgroundColor: "#383838",
+		backgroundColor: "rgba(56,56,56,0.8)",
+	})
+	.to(".empty1", {
+		opacity: 1,
+	})
+	.to(".empty3", {
+		opacity: 1,
 	})
 	.call(() => {
 		dashboard.style.opacity = 1
+		body.style.overflow = "visible"
+		setTimeout(() => {
+			for (let modal of modals) {
+				modal.remove()
+			}
+			// container.style.overflow = "visible"
+		}, 3000)
 	})
 tl3.call(addEffect)
-setTimeout(() => {
-	for (let modal of modals) {
-		modal.remove()
-	}
-	container.style.overflow = "visible"
-}, 7000)
 
 class Bubble {
 	constructor() {
