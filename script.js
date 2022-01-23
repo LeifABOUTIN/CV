@@ -154,7 +154,7 @@ tlbefore
 		"-=2"
 	)
 	.to("body", {
-		backgroundImage: "url(../imgs/montagnes2.jpg)",
+		backgroundImage: "url(./imgs/montagnes2.jpg)",
 	})
 	.to(".modal1", {
 		background: "transparent",
@@ -202,7 +202,7 @@ tl2.to(".m2", {
 	})
 	.call(() => {
 		dashboard.style.opacity = 1
-		body.style.overflow = "visible"
+		document.body.style.overflow = "visible"
 		setTimeout(() => {
 			for (let modal of modals) {
 				modal.remove()
