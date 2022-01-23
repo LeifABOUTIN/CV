@@ -51,7 +51,7 @@ const startTheGame = () => {
 		new_bubble.move()
 		bubbleCount += 1
 
-		counter.innerText = bubbleCount
+		counter.innerText = bubbleCount < 0 ? 0 : bubbleCount
 
 		arrayOfBubbles.push(new_bubble)
 	}, 1000)
@@ -222,7 +222,7 @@ class Bubble {
 		setTimeout(() => {
 			this.bubble.remove()
 			bubbleCount -= 1
-			counter.innerText = bubbleCount
+			counter.innerText = bubbleCount < 0 ? 0 : bubbleCount
 		}, 200)
 	}
 	popOne(bubble) {
@@ -243,7 +243,7 @@ class Bubble {
 			bubble.target.remove()
 		}, 500)
 		bubbleCount -= 1
-		counter.innerText = bubbleCount
+		counter.innerText = bubbleCount < 0 ? 0 : bubbleCount
 	}
 	createAndAnimate() {
 		let parent = container
