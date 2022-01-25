@@ -168,10 +168,10 @@ body {
 	grid-area: job_and_xp;
 	padding: 0 2rem;
 }
-span,
+/* span,
 p {
 	margin-left: 1rem;
-}
+} */
 h3 {
 	padding: 0.5rem 0 0.5rem 0;
 }
