@@ -252,7 +252,7 @@ h2 {
 	opacity: 1;
 }
 
-.slider {
+.slider2 {
 	display: flex;
 	padding: 1rem;
 }
@@ -367,7 +367,80 @@ h2 {
 		opacity: 1;
 	}
 }
+.sub-menu {
+	position: absolute;
+	top: 10px;
+	left: 0;
 
+	z-index: 10;
+}
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 100px;
+	height: 34px;
+	background-color: transparent;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url("./imgs/flag_fra.png");
+	background-size: cover;
+	border-right: 1px solid black;
+	border-bottom: 1px solid black;
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+	width: 100%;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 26px;
+	width: 26px;
+	left: 4px;
+	bottom: 4px;
+	background-color: rgba(0, 0, 0, 0.438);
+
+	-webkit-transition: 0.4s;
+	transition: 0.4s;
+}
+
+input:checked + .slider {
+	background-color: #2196f3;
+	width: 100%;
+}
+
+input:focus + .slider {
+	box-shadow: 0 0 1px #2196f3;
+	width: 100%;
+}
+
+input:checked + .slider:before {
+	-webkit-transform: translateX(65px);
+	-ms-transform: translateX(65px);
+	transform: translateX(65px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
 @media screen and (max-width: 1000px) {
 	/* div {
 		margin: 1.5rem 0 0 0;
