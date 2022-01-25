@@ -1,7 +1,7 @@
-window.scroll({
-	top: 0,
-	left: 0,
-})
+// window.scroll({
+// 	top: 0,
+// 	left: 0,
+// })
 
 const maxWidth = window.innerWidth * 1.1
 const maxHeight = window.innerHeight * 1.1
@@ -42,7 +42,6 @@ let player_score = 0
 const arrayOfBubbles = []
 
 const modals = document.querySelectorAll(".modal")
-modals.forEach((letter) => (letter.style.opacity = 1))
 
 //				FUNCTIONS
 
@@ -142,85 +141,112 @@ btnDestroyBubbles.addEventListener("click", popEmAll)
 startBtn.addEventListener("click", startTheGame)
 
 //				ANIMATIONS
-const tlbefore = gsap.timeline({ delay: 0.2 })
-const tl = gsap.timeline({ delay: 4 })
-const tl2 = gsap.timeline({ delay: 7 })
-const tl3 = gsap.timeline({ delay: 10 })
-tlbefore
-	.from(".textAnimation", { y: 0, opacity: 0 })
-	.to(".textAnimation", {
-		y: -200,
-		duration: 2,
-		opacity: 1,
-		ease: "expo.out",
-	})
-	.to(
-		".modal1",
-		{
-			ease: "sine.out",
-			clipPath: "circle(100% at 50% 50%)",
-			duration: 3,
-		},
-		"-=2"
-	)
-	.to("body", {
-		backgroundImage: "url(./imgs/montagnes2.jpg)",
-	})
-	.to(".modal1", {
-		background: "transparent",
-		backgroundImage: "none",
-	})
-tl.to(".modal", {
-	duration: 1,
-	x: -4000,
-	ease: "none",
-	stagger: { from: "random", amount: 0.3 },
-})
-	.to(".container", {
-		y: -height,
-		duration: 1,
-		opacity: 1,
-	})
-	.fromTo(
-		".animate",
-		{
-			opacity: 0,
-			duration: 1,
-		},
-		{
-			opacity: 1,
-			duration: 1,
-			ease: "elastic",
-			stagger: { from: "random", amount: 1 },
-		}
-	)
-tl2.to(".m2", {
-	duration: 1,
-	x: 8000,
-	ease: "power1.inOut",
-	stagger: { from: "random", amount: 0.3 },
-})
+if (history.scrollRestoration) {
+	history.scrollRestoration = "manual"
+} else {
+	window.onbeforeunload = function () {
+		window.scrollTo(0, 0)
+	}
+}
+window.addEventListener("DOMContentLoaded", () => {
+	const tlbefore = gsap.timeline()
+	const tl = gsap.timeline({ delay: 6 })
+	const tl2 = gsap.timeline({ delay: 8 })
+	const tl3 = gsap.timeline({ delay: 12 })
 
-	.to(".container", {
-		backgroundColor: "rgba(56,56,56,0.8)",
+	tlbefore
+
+		.from(".textAnimation", { y: 0, opacity: 0 })
+		.to(".textAnimation", {
+			y: -200,
+			duration: 2,
+			opacity: 1,
+			ease: "expo.out",
+		})
+		.to(
+			".modal1",
+			{
+				ease: "sine.out",
+				clipPath: "circle(100% at 50% 50%)",
+				duration: 3,
+			},
+			"-=2"
+		)
+		// .from(".letter", { y: -400, opacity: 1 }, "-=2")
+		.to(
+			".letter",
+			{
+				opacity: 1,
+				top: 0,
+				duration: 2,
+				stagger: {
+					from: "random",
+					amount: 1,
+					ease: "slow(0.7, 0.7, false)",
+				},
+			},
+			"-=2"
+		)
+
+		.to("body", {
+			backgroundImage: "url(./imgs/montagnes2.jpg)",
+		})
+		.to(".modal1", {
+			background: "transparent",
+			backgroundImage: "none",
+		})
+	tl.to(".modal", {
+		duration: 1,
+		x: -4000,
+		ease: "none",
+		stagger: { from: "random", amount: 0.3 },
 	})
-	.to(".empty1", {
-		opacity: 1,
-	})
-	.to(".empty3", {
-		opacity: 1,
-	})
-	.call(() => {
-		dashboard.style.opacity = 1
-		document.body.style.overflow = "visible"
-		setTimeout(() => {
-			for (let modal of modals) {
-				modal.remove()
+		.to(".container", {
+			y: -height,
+			duration: 1,
+			opacity: 1,
+		})
+		.fromTo(
+			".animate",
+			{
+				opacity: 0,
+				duration: 1,
+			},
+			{
+				opacity: 1,
+				duration: 1,
+				ease: "elastic",
+				stagger: { from: "random", amount: 1 },
 			}
-			// container.style.overflow = "visible"
-		}, 3000)
+		)
+	tl2.to(".m2", {
+		duration: 1,
+		x: 8000,
+		ease: "power1.inOut",
+		stagger: { from: "random", amount: 0.3 },
 	})
-tl3.call(addEffect)
+
+		.to(".container", {
+			backgroundColor: "rgba(56,56,56,0.8)",
+		})
+		.to(".empty1", {
+			opacity: 1,
+		})
+		.to(".empty3", {
+			opacity: 1,
+		})
+		.call(() => {
+			dashboard.style.opacity = 1
+			document.body.style.overflow = "visible"
+			setTimeout(() => {
+				for (let modal of modals) {
+					modal.remove()
+				}
+				// container.style.overflow = "visible"
+			}, 3000)
+		})
+	tl3.call(addEffect)
+})
 
 class Bubble {
 	constructor() {
